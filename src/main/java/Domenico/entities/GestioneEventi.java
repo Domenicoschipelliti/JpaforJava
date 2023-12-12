@@ -1,13 +1,16 @@
 package Domenico.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "gestioneeventi")
 public class GestioneEventi {
     @Id //questa annotazione sta ad indicare che id(sotto) è una chiave primaria
+    @GeneratedValue//<--questo farà gestire il valore di id automaticamente dal database che verrà aumentato di 1 ogni volta
     public long id;
+
     @Column //<---queste sono le colonne
     public String titolo;
 
@@ -15,29 +18,27 @@ public class GestioneEventi {
     public String descrizione;
 
     @Column
-    public Date dataEvento;
+    public LocalDate dataEvento;
 
     @Column
-    @Enumerated
-    public tipoEvento tipoEvento;
+    @Enumerated(EnumType.STRING)
+    public tipoEvento tipo;
 
     @Column
     public int numeroMassimoPartecipanti;
 
-    public GestioneEventi() {
-    }
 
-    public GestioneEventi(Date dataEvento, String titolo,String descrizione,tipoEvento tipoEvento,int numeroMassimoPartecipanti) {
-        this.dataEvento = dataEvento;
+    public GestioneEventi(int numeroMassimoPartecipanti,tipoEvento tipo,LocalDate dataEvento,String titolo,String descrizione) {
+        this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
         this.titolo=titolo;
+        this.tipo=tipo;
         this.descrizione=descrizione;
-        this.tipoEvento=tipoEvento;
-        this.numeroMassimoPartecipanti=numeroMassimoPartecipanti;
-
-
-
+        this.dataEvento=dataEvento;
     }
 
+    public GestioneEventi(){
+
+    }
 
     public String getTitolo() {
         return titolo;
@@ -55,20 +56,20 @@ public class GestioneEventi {
         this.descrizione = descrizione;
     }
 
-    public Date getDataEvento() {
+    public LocalDate getDataEvento() {
         return dataEvento;
     }
 
-    public void setDataEvento(Date dataEvento) {
+    public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
 
     public Domenico.entities.tipoEvento getTipoEvento() {
-        return tipoEvento;
+        return tipo;
     }
 
-    public void setTipoEvento(Domenico.entities.tipoEvento tipoEvento) {
-        this.tipoEvento = tipoEvento;
+    public void setTipo(Domenico.entities.tipoEvento tipoEvento) {
+        this.tipo = tipoEvento;
     }
 
 
@@ -78,5 +79,18 @@ public class GestioneEventi {
 
     public void setNumeroMassimoPartecipanti(int numeroMassimoPartecipanti) {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
+    }
+
+
+    @Override
+    public String toString() {
+        return "GestioneEventi{" +
+                "id=" + id +
+                ", titolo='" + titolo + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", dataEvento=" + dataEvento +
+                ", tipoEvento=" + tipo +
+                ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti +
+                '}';
     }
 }
