@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="Jpa">
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Jpa"/><!--il server su cui verrà ostato il database-->
+            <property name="javax.persistence.jdbc.user" value="postgres"/><!--il user che stiamo utilizzando per ciò di default è postgres ma si può nominare come si vuole-->
+            <property name="javax.persistence.jdbc.password" value="1234"/><!--la password con cui si collega al database-->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/><!--l'ide con cui comunichiamo cioè pgadmin in questo caso-->
+            <property name="hibernate.default_schema" value="public"/><!--lo schema è riferito alla cartella nel pgadmin(colui che crea il database con la quale comunichiamo)-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/><!--il dialetto è importante per far capitre alla jpa quale dialetto o metodologia di linguaggui di sql usare-->
+            <property name="hibernate.hbm2ddl.auto" value="update"/><!--Serve a far capire alla jpa che quando viene modificata una tabella essa rimettere i valori apposto (non sempre è cos' facile :))-->
+        </properties>
+    </persistence-unit>
+</persistence>
