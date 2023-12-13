@@ -16,9 +16,11 @@ public class Application {
 
     public static void main(String[] args) {
         EntityManager ma=mana.createEntityManager();
+
         GestioneEventi event=new GestioneEventi(5, tipoEvento.PUBBLICO, LocalDate.of(2023,12,31),"bella e bestia","bella sposa la bestia");
         GestioneEventi eve=new GestioneEventi(5, tipoEvento.PRIVATO, LocalDate.of(2023,1,2),"Incontro","Amico");
         GestioneEventi even=new GestioneEventi(10, tipoEvento.PUBBLICO, LocalDate.of(2023,9,10),"Teatro","Sain't Gabriel");
+
         GestioneEventiDAO ao= new GestioneEventiDAO(ma);
 
         ao.save(event);
